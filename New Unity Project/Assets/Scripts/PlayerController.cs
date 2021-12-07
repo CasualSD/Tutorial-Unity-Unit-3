@@ -11,24 +11,35 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         playerRb = GetComponent<Rigidbody>();
-        Physics.gravity *= gravityModifier; 
+        Physics.gravity *= gravityModifier;
+        playerRb.freezeRotation = true; 
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
+
         }
+
     }
     private void OnCollisionEnter(Collision collision)
     {
+
         if (collision.collider.name == "Ground")
         {
+
             isGrounded = true;
+
         }
+
     }
 }
